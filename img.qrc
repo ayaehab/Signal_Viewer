@@ -1,0 +1,15 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource>
+        <file>img/play.jpg</file>
+        <file>img/stop.png</file>
+        <file>img/zoomin.JPG</file>
+        <file>img/zoomout.JPG</file>
+        <file>img/Rarrw.png</file>
+        <file>img/larrw.png</file>
+
+        
+        <file>img/uparrw-Copy.png</file>
+        <file>img/dwnarrw.png</file>
+    </qresource>
+</RCC>
