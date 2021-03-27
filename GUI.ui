@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1129</width>
-    <height>846</height>
+    <width>1134</width>
+    <height>870</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
       <x>0</x>
       <y>740</y>
       <width>1131</width>
-      <height>51</height>
+      <height>81</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -29,239 +29,216 @@
 }</string>
     </property>
     <property name="title">
-     <string>GroupBox</string>
+     <string/>
     </property>
-    <widget class="QPushButton" name="stop_button">
+    <widget class="QWidget" name="">
      <property name="geometry">
       <rect>
        <x>0</x>
        <y>20</y>
-       <width>41</width>
-       <height>31</height>
+       <width>1131</width>
+       <height>61</height>
       </rect>
      </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton { background-color: white; }</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="Resources/img.qrc">
-       <normaloff>:/img/stop.png</normaloff>:/img/stop.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>50</width>
-       <height>50</height>
-      </size>
-     </property>
-     <property name="shortcut">
-      <string>Alt+S</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="play_button">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>20</y>
-       <width>41</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton { background-color: white; }</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="Resources/img.qrc">
-       <normaloff>:/img/play.jpg</normaloff>:/img/play.jpg</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>25</width>
-       <height>25</height>
-      </size>
-     </property>
-     <property name="shortcut">
-      <string>Alt+P</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="up_button">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>20</y>
-       <width>41</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton { background-color: white; }</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="Resources/img.qrc">
-       <normaloff>:/img/uparrw-Copy.png</normaloff>:/img/uparrw-Copy.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>25</width>
-       <height>25</height>
-      </size>
-     </property>
-     <property name="shortcut">
-      <string>Ctrl+U</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="down_button">
-     <property name="geometry">
-      <rect>
-       <x>120</x>
-       <y>20</y>
-       <width>41</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton { background-color: white; }</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="Resources/img.qrc">
-       <normaloff>:/img/dwnarrw.png</normaloff>:/img/dwnarrw.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>25</width>
-       <height>25</height>
-      </size>
-     </property>
-     <property name="shortcut">
-      <string>Ctrl+D</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="left_button">
-     <property name="geometry">
-      <rect>
-       <x>160</x>
-       <y>20</y>
-       <width>41</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton { background-color: white; }</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="Resources/img.qrc">
-       <normaloff>:/img/larrw.png</normaloff>:/img/larrw.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>25</width>
-       <height>25</height>
-      </size>
-     </property>
-     <property name="shortcut">
-      <string>Ctrl+L</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="right_button">
-     <property name="geometry">
-      <rect>
-       <x>200</x>
-       <y>20</y>
-       <width>41</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton { background-color: white; }</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="Resources/img.qrc">
-       <normaloff>:/img/Rarrw.png</normaloff>:/img/Rarrw.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>25</width>
-       <height>25</height>
-      </size>
-     </property>
-     <property name="shortcut">
-      <string>Ctrl+R</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="zoom_out">
-     <property name="geometry">
-      <rect>
-       <x>240</x>
-       <y>20</y>
-       <width>41</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton { background-color: white; }</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="Resources/img.qrc">
-       <normaloff>:/img/zoomout.JPG</normaloff>:/img/zoomout.JPG</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>50</width>
-       <height>50</height>
-      </size>
-     </property>
-     <property name="shortcut">
-      <string>Ctrl+O</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="zoom_in">
-     <property name="geometry">
-      <rect>
-       <x>280</x>
-       <y>20</y>
-       <width>41</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton { background-color: white; }</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="Resources/img.qrc">
-       <normaloff>:/img/zoomin.JPG</normaloff>:/img/zoomin.JPG</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>50</width>
-       <height>50</height>
-      </size>
-     </property>
-     <property name="shortcut">
-      <string>Ctrl+I</string>
-     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="stop_button">
+        <property name="styleSheet">
+         <string notr="true">QPushButton { background-color: white; }</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="img.qrc">
+          <normaloff>:/img/stop.png</normaloff>:/img/stop.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>25</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="shortcut">
+         <string>Alt+S</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="play_button">
+        <property name="styleSheet">
+         <string notr="true">QPushButton { background-color: white; }</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="img.qrc">
+          <normaloff>:/img/play.jpg</normaloff>:/img/play.jpg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>25</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="shortcut">
+         <string>Alt+P</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="up_button">
+        <property name="styleSheet">
+         <string notr="true">QPushButton { background-color: white; }</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="img.qrc">
+          <normaloff>:/img/uparrw-Copy.png</normaloff>:/img/uparrw-Copy.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>25</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="shortcut">
+         <string>Ctrl+U</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="down_button">
+        <property name="styleSheet">
+         <string notr="true">QPushButton { background-color: white; }</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="img.qrc">
+          <normaloff>:/img/dwnarrw.png</normaloff>:/img/dwnarrw.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>25</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="shortcut">
+         <string>Ctrl+D</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="left_button">
+        <property name="styleSheet">
+         <string notr="true">QPushButton { background-color: white; }</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="img.qrc">
+          <normaloff>:/img/larrw.png</normaloff>:/img/larrw.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>25</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="shortcut">
+         <string>Ctrl+L</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="right_button">
+        <property name="styleSheet">
+         <string notr="true">QPushButton { background-color: white; }</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="img.qrc">
+          <normaloff>:/img/Rarrw.png</normaloff>:/img/Rarrw.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>25</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="shortcut">
+         <string>Ctrl+R</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="zoom_out">
+        <property name="styleSheet">
+         <string notr="true">QPushButton { background-color: white; }</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="img.qrc">
+          <normaloff>:/img/zoomout.JPG</normaloff>:/img/zoomout.JPG</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>25</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="shortcut">
+         <string>Ctrl+O</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="zoom_in">
+        <property name="styleSheet">
+         <string notr="true">QPushButton { background-color: white; }</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="img.qrc">
+          <normaloff>:/img/zoomin.JPG</normaloff>:/img/zoomin.JPG</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>25</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="shortcut">
+         <string>Ctrl+I</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>798</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
     </widget>
    </widget>
    <widget class="PlotWidget" name="graphicsView_1">
@@ -339,7 +316,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1129</width>
+     <width>1134</width>
      <height>26</height>
     </rect>
    </property>
@@ -347,21 +324,21 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionOpen"/>
+    <widget class="QMenu" name="menuOpen">
+     <property name="title">
+      <string>Open</string>
+     </property>
+     <addaction name="actionchannel_1"/>
+     <addaction name="actionChannel_2"/>
+     <addaction name="actionChannel_3"/>
+    </widget>
+    <addaction name="menuOpen"/>
     <addaction name="actionPrint_to_PDF"/>
     <addaction name="actionExit"/>
    </widget>
    <addaction name="menuFile"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionOpen">
-   <property name="text">
-    <string>Open</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+N</string>
-   </property>
-  </action>
   <action name="actionPrint_to_PDF">
    <property name="text">
     <string>Print to PDF</string>
@@ -378,6 +355,21 @@
     <string>Ctrl+F4</string>
    </property>
   </action>
+  <action name="actionchannel_1">
+   <property name="text">
+    <string>Channel 1</string>
+   </property>
+  </action>
+  <action name="actionChannel_2">
+   <property name="text">
+    <string>Channel 2</string>
+   </property>
+  </action>
+  <action name="actionChannel_3">
+   <property name="text">
+    <string>Channel 3</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -387,7 +379,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="Resources/img.qrc"/>
+  <include location="img.qrc"/>
  </resources>
  <connections/>
 </ui>
