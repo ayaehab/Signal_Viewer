@@ -10,7 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from pyqtgraph import PlotWidget
-# import img_rc
+import img_rc
 
 
 class Ui_MainWindow(object):
