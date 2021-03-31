@@ -11,7 +11,6 @@ import pyqtgraph as pg
 import os 
 import pathlib
 import random
-import img_rc
 
 
 class SignalViewer(QtWidgets.QMainWindow):
@@ -25,15 +24,23 @@ class SignalViewer(QtWidgets.QMainWindow):
         self.timer3 = QtCore.QTimer()
 
         #Connecting Buttons
-        self.actionchannel_1.triggered.connect(lambda : self.open_file() )
-        self.play_button.clicked.connect(lambda : self.play1())
-        self.stop_button.clicked.connect(lambda : self.stop1())
-        self.down_button.clicked.connect(lambda : self.resume1())
+        self.actionAdd_Signals.triggered.connect(lambda : self.open_file() )
+        self.actionExit.triggered.connect(lambda : self.clear_all())
+        self.play_button.clicked.connect(lambda : self.play3())
+        self.stop_button.clicked.connect(lambda : self.stop3())
         self.graphicsView_1.setXRange(min=0, max=10)
         self.graphicsView_2.setXRange(min=0, max=10)
         self.graphicsView_3.setXRange(min=0, max=10)
 
         self.pens = [pg.mkPen('r'), pg.mkPen('b'), pg.mkPen('g')]
+
+
+    def clear_all(self):
+        self.graphicsView_1.clear()
+        self.graphicsView_2.clear()
+        self.graphicsView_3.clear()
+
+
 
     def open_file(self):
         self.fname1 = QtGui.QFileDialog.getOpenFileNames( self, 'Open only txt or CSV or xls', os.getenv('HOME') )
@@ -49,116 +56,95 @@ class SignalViewer(QtWidgets.QMainWindow):
         path=file_path
         self.file_ex = self.get_extention(path)
         if self.file_ex== 'txt':
-            data = pd.read_csv(path)
-            self.y1= data.values[:, 0]
+            data1 = pd.read_csv(path)
+            self.y1= data1.values[:, 0]
             self.x1 = np.linspace(0, 0.001 * len(self.y1), len(self.y1))
         if self.file_ex == 'csv':
-            data = pd.read_csv(path)
-            self.y1 = data.values[:, 1]
-            self.x1 = data.values[:, 0]
-
-        # initializing signal
-        self.pen = pg.mkPen(color=(0,160, 0))
+            data1 = pd.read_csv(path)
+            self.y1 = data1.values[:, 1]
+            self.x1 = data1.values[:, 0]
         self.data_line1= self.graphicsView_1.plot(self.x1, self.y1, pen=self.pens[0])
         
-    def play1(self):
-        self.idx1=0
-        self.timer1.setInterval(30)
-        self.timer1.timeout.connect(self.update_plot_data3)
-        self.timer1.start() 
-    
-    def stop1(self):
-        self.timer1.stop()
-    
-    def resume1(self):
-        self.timer1.start()
 
     def update_plot_data1(self):
         x = self.x1[:self.idx1]
         y = self.y1[:self.idx1]  
-        self.idx1 +=80
-        if self.idx1 > len(self.x1) :
-            self.idx1 = 0 
-        
-        if  self.x1[self.idx1] >0.5:
-            self.graphicsView_1.setLimits(xMin =-0.6, xMax=max(x, default=0)) #disable paning over xlimits
-        self.graphicsView_1.plotItem.setXRange(max(x, default=0)-3, max(x,default=0))        
-
+        self.idx1 +=50
+        self.graphicsView_1.plotItem.setXRange(max(x, default=0)-9, max(x,default=0))        
         self.data_line1.setData(x, y) 
+
+    def play1(self):
+        self.idx1=0
+        self.timer1.setInterval(80)
+        self.timer1.timeout.connect(self.update_plot_data1)
+        self.timer1.start() 
+
+
+    
+    def stop1(self):
+        self.timer1.stop()
   
     def read_file2(self, file_path) :  
         path=file_path
         self.file_ex = self.get_extention(path)
         if self.file_ex== 'txt':
-            data = pd.read_csv(path)
-            self.y1= data.values[:, 0]
-            self.x1 = np.linspace(0, 0.001 * len(self.y1), len(self.y1))
+            data2 = pd.read_csv(path)
+            self.y2= data2.values[:, 0]
+            self.x2 = np.linspace(0, 0.001 * len(self.y2), len(self.y2))
         if self.file_ex == 'csv':
-            data = pd.read_csv(path)
-            self.y1 = data.values[:, 1]
-            self.x1 = data.values[:, 0]
-
-        # initializing signal
-        self.pen = pg.mkPen(color=(0,160, 0))
-        self.data_line1= self.graphicsView_2.plot(self.x1, self.y1, pen=self.pens[1])
+            data2 = pd.read_csv(path)
+            self.y2 = data2.values[:, 1]
+            self.x2 = data2.values[:, 0]
+        self.data_line2= self.graphicsView_2.plot(self.x2, self.y2, pen=self.pens[1])
         
 
     def play2(self):
-        self.idx1=0
-        self.timer1.setInterval(30)
+        self.idx2=0
+        self.timer2.setInterval(30)
+        self.timer2.timeout.connect(self.update_plot_data2)
+        self.timer2.start() 
 
-        self.timer1.timeout.connect(self.update_plot_data2)
-        self.timer1.start() 
+
+
+    def stop2(self):
+        self.timer2.stop()
 
     def update_plot_data2(self):
-        x = self.x1[:self.idx1]
-        y = self.y1[:self.idx1]  
-        self.idx1 +=50
-        if self.idx1 > len(self.x1) :
-            self.idx1 = 0 
-        
-        if  self.x1[self.idx1] > 0.5:
-            self.graphicsView_2.setLimits(xMin =-0.6, xMax=max(x, default=0)) #disable paning over xlimits
-        self.graphicsView_2.plotItem.setXRange(max(x, default=0)-3, max(x,default=0))        
-
-        self.data_line1.setData(x, y)
+        x = self.x2[:self.idx2]
+        y = self.y2[:self.idx2]  
+        self.idx2 +=50
+        self.graphicsView_2.plotItem.setXRange(max(x, default=0)-18, max(x,default=0))    #shrink range of x-axis     
+        self.data_line2.setData(x, y)
 
     def read_file3(self, file_path) :  
         path=file_path
         self.file_ex = self.get_extention(path)
         if self.file_ex== 'txt':
-            data = pd.read_csv(path)
-            self.y1= data.values[:, 0]
-            self.x1 = np.linspace(0, 0.001 * len(self.y1), len(self.y1))
+            data3 = pd.read_csv(path)
+            self.y3= data3.values[:, 0]
+            self.x3 = np.linspace(0, 0.001 * len(self.y3), len(self.y3))
         if self.file_ex == 'csv':
-            data = pd.read_csv(path)
-            self.y1 = data.values[:, 1]
-            self.x1 = data.values[:, 0]
-
-        # initializing signal
-        self.pen = pg.mkPen(color=(0,160, 0))
-        self.data_line1= self.graphicsView_3.plot(self.x1, self.y1, pen=self.pens[2])
+            data3 = pd.read_csv(path)
+            self.y3 = data3.values[:, 1]
+            self.x3 = data3.values[:, 0]
+        self.data_line3= self.graphicsView_3.plot(self.x3, self.y3, pen=self.pens[2])
         
-
-    def play3(self):
-        self.idx1=0
-        self.timer1.setInterval(30)
-
-        self.timer1.timeout.connect(self.update_plot_data3)
-        self.timer1.start() 
 
     def update_plot_data3(self):
-        x = self.x1[:self.idx1]
-        y = self.y1[:self.idx1]  
-        self.idx1 +=5
-        if self.idx1 > len(self.x1) :
-            self.idx1 = 0 
-        
-        if  self.x1[self.idx1] > 0.5:
-            self.graphicsView_3.setLimits(xMin =-0.2, xMax=max(x, default=0)) #disable paning over xlimits
-        self.graphicsView_3.plotItem.setXRange(max(x, default=0)-4, max(x,default=0))        
+        x = self.x3[:self.idx3]
+        y = self.y3[:self.idx3]  
+        self.idx3 +=50
+        self.graphicsView_3.plotItem.setXRange(max(x, default=0)-4, max(x,default=0))  
+        self.data_line3.setData(x, y) 
 
-        self.data_line1.setData(x, y) 
+    def play3(self):
+        self.idx3=0
+        self.timer3.setInterval(30)
+        self.timer3.timeout.connect(self.update_plot_data3)
+        self.timer3.start() 
+
+    def stop3(self):
+        self.timer3.stop()
 
 
     def get_extention(self, s):
