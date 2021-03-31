@@ -11,7 +11,7 @@ import pyqtgraph as pg
 import os 
 import pathlib
 import random
-import img_rc
+
 
 class SignalViewer(QtWidgets.QMainWindow):
     def __init__(self):
@@ -26,8 +26,11 @@ class SignalViewer(QtWidgets.QMainWindow):
         #Connecting Buttons
         self.actionAdd_Signals.triggered.connect(lambda : self.open_file() )
         self.actionExit.triggered.connect(lambda : self.clear_all())
-        self.play_button.clicked.connect(lambda : self.play3())
-        self.stop_button.clicked.connect(lambda : self.stop3())
+        self.play_button.clicked.connect(lambda : self.play())
+        self.stop_button.clicked.connect(lambda : self.stop())
+        self.actionChannel_2.triggered.connect(lambda checked: (self.select_signal(1)))
+        self.actionChannel_3.triggered.connect(lambda checked: (self.select_signal(2)))
+        self.actionChannel_6.triggered.connect(lambda checked: (self.select_signal(3)))
         self.graphicsView_1.setXRange(min=0, max=10)
         self.graphicsView_2.setXRange(min=0, max=10)
         self.graphicsView_3.setXRange(min=0, max=10)
@@ -74,16 +77,12 @@ class SignalViewer(QtWidgets.QMainWindow):
         self.data_line1.setData(x, y) 
 
     def play1(self):
+
         self.idx1=0
         self.timer1.setInterval(80)
         self.timer1.timeout.connect(self.update_plot_data1)
         self.timer1.start() 
 
-
-    
-    def stop1(self):
-        self.timer1.stop()
-  
     def read_file2(self, file_path) :  
         path=file_path
         self.file_ex = self.get_extention(path)
@@ -97,18 +96,6 @@ class SignalViewer(QtWidgets.QMainWindow):
             self.x2 = data2.values[:, 0]
         self.data_line2= self.graphicsView_2.plot(self.x2, self.y2, pen=self.pens[1])
         
-
-    def play2(self):
-        self.idx2=0
-        self.timer2.setInterval(30)
-        self.timer2.timeout.connect(self.update_plot_data2)
-        self.timer2.start() 
-
-
-
-    def stop2(self):
-        self.timer2.stop()
-
     def update_plot_data2(self):
         x = self.x2[:self.idx2]
         y = self.y2[:self.idx2]  
@@ -133,18 +120,51 @@ class SignalViewer(QtWidgets.QMainWindow):
     def update_plot_data3(self):
         x = self.x3[:self.idx3]
         y = self.y3[:self.idx3]  
-        self.idx3 +=50
+        self.idx3 +=20
         self.graphicsView_3.plotItem.setXRange(max(x, default=0)-4, max(x,default=0))  
         self.data_line3.setData(x, y) 
 
-    def play3(self):
-        self.idx3=0
-        self.timer3.setInterval(30)
-        self.timer3.timeout.connect(self.update_plot_data3)
-        self.timer3.start() 
+    def select_signal(self, signal):
+        if signal == 1:
+            self.actionChannel_2.setChecked(True)
+            self.actionChannel_3.setChecked(False)
+            self.actionChannel_6.setChecked(False)
+            
+        elif signal == 2:
+            self.actionChannel_2.setChecked(False)
+            self.actionChannel_3.setChecked(True)
+            self.actionChannel_6.setChecked(False)
 
-    def stop3(self):
-        self.timer3.stop()
+        elif signal == 3:
+            self.actionChannel_2.setChecked(False)
+            self.actionChannel_3.setChecked(False)
+            self.actionChannel_6.setChecked(True)
+
+    
+    def play(self):
+        if self.actionChannel_2.setChecked():
+            self.idx1=0
+            self.timer1.setInterval(80)
+            self.timer1.timeout.connect(self.update_plot_data1)
+            self.timer1.start() 
+        elif self.actionChannel_3.setChecked():
+            self.idx2=0
+            self.timer2.setInterval(30)
+            self.timer2.timeout.connect(self.update_plot_data2)
+            self.timer2.start() 
+        elif self.actionChannel_6.setChecked():
+            self.idx3=0
+            self.timer3.setInterval(30)
+            self.timer3.timeout.connect(self.update_plot_data3)
+            self.timer3.start() 
+
+    def stop(self):
+        if self.actionChannel_2.setChecked():
+            self.timer1.stop()
+        elif self.actionChannel_3.setChecked():
+            self.timer2.stop()
+        elif self.actionChannel_6.setChecked():
+            self.timer3.stop()
 
 
     def get_extention(self, s):
