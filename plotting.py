@@ -11,7 +11,7 @@ import pyqtgraph as pg
 import os 
 import pathlib
 import random
-
+import img_rc
 
 class SignalViewer(QtWidgets.QMainWindow):
     def __init__(self):
@@ -25,7 +25,8 @@ class SignalViewer(QtWidgets.QMainWindow):
 
         #Connecting Buttons
         self.actionAdd_Signals.triggered.connect(lambda : self.open_file() )
-        self.actionExit.triggered.connect(lambda : self.clear_all())
+        self.actionCloseAll.triggered.connect(lambda : self.clear_all())
+        self.actionExit.triggered.connect(lambda: self.close())
         self.play_button.clicked.connect(lambda : self.play())
         self.stop_button.clicked.connect(lambda : self.stop())
         self.actionChannel_2.triggered.connect(lambda checked: (self.select_signal(1)))
