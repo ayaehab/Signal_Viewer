@@ -11,7 +11,7 @@ import pyqtgraph as pg
 import os 
 import pathlib
 import random
-
+import img_rc
 
 class SignalViewer(QtWidgets.QMainWindow):
     def __init__(self):

@@ -16,35 +16,65 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
-     <widget class="PlotWidget" name="graphicsView_1"/>
+     <widget class="PlotWidget" name="graphicsView_1">
+      <property name="mouseTracking">
+       <bool>true</bool>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="dragMode">
+       <enum>QGraphicsView::NoDrag</enum>
+      </property>
+     </widget>
     </item>
     <item>
      <layout class="QVBoxLayout" name="verticalLayout"/>
     </item>
     <item>
-     <widget class="QScrollBar" name="horizontalScrollBar">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+     <widget class="PlotWidget" name="graphicsView_2">
+      <property name="mouseTracking">
+       <bool>true</bool>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="dragMode">
+       <enum>QGraphicsView::NoDrag</enum>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="PlotWidget" name="graphicsView_2"/>
-    </item>
-    <item>
-     <widget class="QScrollBar" name="horizontalScrollBar_2">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+     <widget class="PlotWidget" name="graphicsView_3">
+      <property name="mouseTracking">
+       <bool>true</bool>
       </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="PlotWidget" name="graphicsView_3"/>
-    </item>
-    <item>
-     <widget class="QScrollBar" name="horizontalScrollBar_3">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="dragMode">
+       <enum>QGraphicsView::NoDrag</enum>
       </property>
      </widget>
     </item>
@@ -70,7 +100,7 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="D:/WORK/SBME/3rd Year/DSP/Tasks/Task1/Signal_Viewer/img.qrc">
+            <iconset resource="img.qrc">
              <normaloff>:/img/stop.png</normaloff>:/img/stop.png</iconset>
            </property>
            <property name="iconSize">
@@ -93,7 +123,7 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="D:/WORK/SBME/3rd Year/DSP/Tasks/Task1/Signal_Viewer/img.qrc">
+            <iconset resource="img.qrc">
              <normaloff>:/img/play.jpg</normaloff>:/img/play.jpg</iconset>
            </property>
            <property name="iconSize">
@@ -116,7 +146,7 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="D:/WORK/SBME/3rd Year/DSP/Tasks/Task1/Signal_Viewer/img.qrc">
+            <iconset resource="img.qrc">
              <normaloff>:/img/uparrw-Copy.png</normaloff>:/img/uparrw-Copy.png</iconset>
            </property>
            <property name="iconSize">
@@ -139,7 +169,7 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="D:/WORK/SBME/3rd Year/DSP/Tasks/Task1/Signal_Viewer/img.qrc">
+            <iconset resource="img.qrc">
              <normaloff>:/img/dwnarrw.png</normaloff>:/img/dwnarrw.png</iconset>
            </property>
            <property name="iconSize">
@@ -162,7 +192,7 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="D:/WORK/SBME/3rd Year/DSP/Tasks/Task1/Signal_Viewer/img.qrc">
+            <iconset resource="img.qrc">
              <normaloff>:/img/larrw.png</normaloff>:/img/larrw.png</iconset>
            </property>
            <property name="iconSize">
@@ -185,7 +215,7 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="D:/WORK/SBME/3rd Year/DSP/Tasks/Task1/Signal_Viewer/img.qrc">
+            <iconset resource="img.qrc">
              <normaloff>:/img/Rarrw.png</normaloff>:/img/Rarrw.png</iconset>
            </property>
            <property name="iconSize">
@@ -208,7 +238,7 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="D:/WORK/SBME/3rd Year/DSP/Tasks/Task1/Signal_Viewer/img.qrc">
+            <iconset resource="img.qrc">
              <normaloff>:/img/zoomout.JPG</normaloff>:/img/zoomout.JPG</iconset>
            </property>
            <property name="iconSize">
@@ -231,7 +261,7 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="D:/WORK/SBME/3rd Year/DSP/Tasks/Task1/Signal_Viewer/img.qrc">
+            <iconset resource="img.qrc">
              <normaloff>:/img/zoomin.JPG</normaloff>:/img/zoomin.JPG</iconset>
            </property>
            <property name="iconSize">
@@ -271,26 +301,28 @@
      <x>0</x>
      <y>0</y>
      <width>1379</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
      <string>File</string>
     </property>
-    <widget class="QMenu" name="menuOpen">
-     <property name="title">
-      <string>Open</string>
-     </property>
-     <addaction name="actionchannel_1"/>
-     <addaction name="actionChannel_2"/>
-     <addaction name="actionChannel_3"/>
-    </widget>
-    <addaction name="menuOpen"/>
+    <addaction name="actionAdd_Signals"/>
     <addaction name="actionPrint_to_PDF"/>
+    <addaction name="actionCloseAll"/>
     <addaction name="actionExit"/>
    </widget>
+   <widget class="QMenu" name="menuChannels">
+    <property name="title">
+     <string>Signals</string>
+    </property>
+    <addaction name="actionChannel_1"/>
+    <addaction name="actionChannel_4"/>
+    <addaction name="actionChannel_5"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuChannels"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionPrint_to_PDF">
@@ -301,7 +333,7 @@
     <string>Ctrl+P</string>
    </property>
   </action>
-  <action name="actionExit">
+  <action name="actionCloseAll">
    <property name="text">
     <string>Close all</string>
    </property>
@@ -324,6 +356,58 @@
     <string>Channel 3</string>
    </property>
   </action>
+  <action name="actionAdd_Signals">
+   <property name="text">
+    <string>Add Signals</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionChannel_1">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Channel 1</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+1</string>
+   </property>
+  </action>
+  <action name="actionChannel_4">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Channel 2</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+2</string>
+   </property>
+  </action>
+  <action name="actionChannel_5">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Channel 3</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+3</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+X</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -333,7 +417,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="D:/WORK/SBME/3rd Year/DSP/Tasks/Task1/Signal_Viewer/img.qrc"/>
+  <include location="img.qrc"/>
  </resources>
  <connections/>
 </ui>
