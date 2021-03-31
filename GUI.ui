@@ -156,7 +156,7 @@
             </size>
            </property>
            <property name="shortcut">
-            <string>Ctrl+U</string>
+            <string>Up</string>
            </property>
           </widget>
          </item>
@@ -179,7 +179,7 @@
             </size>
            </property>
            <property name="shortcut">
-            <string>Ctrl+D</string>
+            <string>Down</string>
            </property>
           </widget>
          </item>
@@ -202,7 +202,7 @@
             </size>
            </property>
            <property name="shortcut">
-            <string>Ctrl+L</string>
+            <string>Left</string>
            </property>
           </widget>
          </item>
@@ -225,7 +225,7 @@
             </size>
            </property>
            <property name="shortcut">
-            <string>Ctrl+R</string>
+            <string>Right</string>
            </property>
           </widget>
          </item>
