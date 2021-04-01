@@ -12,6 +12,9 @@ import os
 import pathlib
 import random
 import img_rc
+from scipy import signal
+import matplotlib.pyplot as plt
+from fpdf import FPDF
 
 class SignalViewer(QtWidgets.QMainWindow):
     def __init__(self):
@@ -70,6 +73,13 @@ class SignalViewer(QtWidgets.QMainWindow):
             self.y1 = data1.values[:, 1]
             self.x1 = data1.values[:, 0]
         self.data_line1= self.graphicsView_1.plot(self.x1, self.y1, pen=self.pens[0])
+        plt.specgram(self.y1,NFFT=None, Fs=10e3, Fc=None)
+        plt.xlabel('Time')
+        plt.ylabel('Frequency')
+        plt.show()
+        plt.savefig('Channel1.png', dpi=300, bbox_inches='tight')
+        img = pg.ImageItem()
+        img.setImage(self.y1)
         
 
     def update_plot_data1(self):
@@ -92,6 +102,12 @@ class SignalViewer(QtWidgets.QMainWindow):
             self.y2 = data2.values[:, 1]
             self.x2 = data2.values[:, 0]
         self.data_line2= self.graphicsView_2.plot(self.x2, self.y2, pen=self.pens[1])
+        plt.specgram(self.y2,NFFT=None, Fs=10e3, Fc=None)
+        plt.xlabel('Time')
+        plt.ylabel('Frequency')
+        plt.show()
+        plt.savefig('Channel2.png', dpi=300, bbox_inches='tight')
+        self.spectrogram_imgs[1]= 'Channel2.png'
         
     def update_plot_data2(self):
         x = self.x2[:self.idx2]
@@ -112,6 +128,12 @@ class SignalViewer(QtWidgets.QMainWindow):
             self.y3 = data3.values[:, 1]
             self.x3 = data3.values[:, 0]
         self.data_line3= self.graphicsView_3.plot(self.x3, self.y3, pen=self.pens[2])
+        plt.specgram(self.y3,NFFT=None, Fs=10e3, Fc=None)
+        plt.xlabel('Time')
+        plt.ylabel('Frequency')
+        plt.show()
+        plt.savefig('Channel3.png', dpi=300, bbox_inches='tight')
+        self.spectrogram_imgs[2]= 'Channel3.png'
         
 
     def update_plot_data3(self):
