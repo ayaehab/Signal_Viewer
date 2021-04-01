@@ -114,7 +114,7 @@ class SignalViewer(QtWidgets.QMainWindow):
                                  height=170, preserveAspectRatio=False)
 
     def export_pdf(self):
-        self.sigName('ECG', 'Eog', 'EMG')
+        self.sigName('ECG', 'EOG', 'EMG')
         self.sigImage(self.ch1_sig_img, self.ch2_sig_img, self.ch3_sig_img)
         self.spectroImage(self.ch1_spec_img,
                           self.ch2_spec_img, self.ch3_spec_img)
