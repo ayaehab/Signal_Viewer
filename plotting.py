@@ -4,18 +4,14 @@ import sys
 import numpy as np
 import pandas as pd
 from PyQt5.QtWidgets import QFileDialog, QGraphicsScene
-import pyedflib
-import math
 from pyqtgraph import PlotWidget, PlotItem
 import pyqtgraph as pg
-import pyqtgraph.exporters
 import os
-import pathlib
-import random
 import img_rc
 from scipy import signal
 import matplotlib.pyplot as plt
-from fpdf import FPDF
+from reportlab.pdfgen import canvas
+import pyqtgraph.exporters
 
 
 class SignalViewer(QtWidgets.QMainWindow):
@@ -32,6 +28,7 @@ class SignalViewer(QtWidgets.QMainWindow):
         self.actionAdd_Signals.triggered.connect(lambda: self.open_file())
         self.actionCloseAll.triggered.connect(lambda: self.clear_all())
         self.actionExit.triggered.connect(lambda: self.close())
+        self.actionPrint_to_PDF.triggered.connect(lambda: self.export_pdf())
 
         self.play_button.clicked.connect(lambda: self.play())
         self.stop_button.clicked.connect(lambda: self.stop())
@@ -55,6 +52,74 @@ class SignalViewer(QtWidgets.QMainWindow):
         self.graphicsView_3.setXRange(min=0, max=10)
 
         self.pens = [pg.mkPen('r'), pg.mkPen('b'), pg.mkPen('g')]
+
+        # Content for PDF
+        self.fileName = "Signal Report.pdf"
+        self.documentTitle = 'Signals report'
+        self.title = 'Signal Comparison'
+
+        # Signals imgs
+        self.ch1_sig_img = 'ch1_sig_img.png'
+        self.ch2_sig_img = 'ch2_sig_img.png'
+        self.ch3_sig_img = 'ch3_sig_img.png'
+        self.ch1_spec_img = 'ch1_spec_img.png'
+        self.ch2_spec_img = 'ch2_spec_img.png'
+        self.ch3_spec_img = 'ch3_spec_img.png'
+
+        #  Create document
+
+        self.pdf = canvas.Canvas(self.fileName)
+        self.pdf.setTitle(self.documentTitle)
+
+        #  Title :: Set fonts
+
+        self.pdf.setFont('Courier-Bold', 36)
+        self.pdf.drawCentredString(300, 770, 'Signals Comparison')
+
+        #  Sub-Title
+
+        self.pdf.setFont('Courier-Bold', 14)
+        self.pdf.drawString(200, 665, 'Signal')
+        self.pdf.drawString(430, 665, 'Spectrogram')
+
+        #  Draw all lines
+        self.pdf.line(10, 650, 570, 650)
+        self.pdf.line(10, 450, 570, 450)
+        self.pdf.line(10, 250, 570, 250)
+
+        self.pdf.line(110, 50, 110, 700)
+        self.pdf.line(350, 50, 350, 700)
+
+    # ###################################
+    # plotting the signals
+    def sigName(self, signal1, signal2, signal3):
+        self.pdf.drawString(50, 550, signal1)
+        self.pdf.drawString(50, 350, signal2)
+        self.pdf.drawString(50, 150, signal3)
+
+    def sigImage(self, img1, img2, img3):
+        self.pdf.drawInlineImage(img1, 120, 465, width=190,
+                                 height=170, preserveAspectRatio=False, showBoundary=True)
+        self.pdf.drawInlineImage(img2, 120, 265, width=190,
+                                 height=170, preserveAspectRatio=False, showBoundary=True)
+        self.pdf.drawInlineImage(img3, 120, 65, width=190,
+                                 height=170, preserveAspectRatio=False, showBoundary=True)
+
+    def spectroImage(self, img1, img2, img3):
+        self.pdf.drawInlineImage(img1, 370, 465, width=190,
+                                 height=170, preserveAspectRatio=False)
+        self.pdf.drawInlineImage(img2, 370, 265, width=190,
+                                 height=170, preserveAspectRatio=False)
+        self.pdf.drawInlineImage(img3, 370, 65, width=190,
+                                 height=170, preserveAspectRatio=False)
+
+    def export_pdf(self):
+        self.sigName('ECG', 'Eeog', 'EMG')
+        self.sigImage(self.ch1_sig_img, self.ch2_sig_img, self.ch3_sig_img)
+        self.spectroImage(self.ch1_spec_img,
+                          self.ch2_spec_img, self.ch3_spec_img)
+
+        self.pdf.save()
 
     def get_extention(self, s):
         for i in range(1, len(s)):
