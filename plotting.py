@@ -29,6 +29,8 @@ class SignalViewer(QtWidgets.QMainWindow):
         self.actionExit.triggered.connect(lambda: self.close())
         self.play_button.clicked.connect(lambda : self.play())
         self.stop_button.clicked.connect(lambda : self.stop())
+        self.zoom_in.clicked.connect(lambda : self.zoomin())
+        self.zoom_out.clicked.connect(lambda : self.zoomout())
         self.actionChannel_2.triggered.connect(lambda checked: (self.select_signal(1)))
         self.actionChannel_3.triggered.connect(lambda checked: (self.select_signal(2)))
         self.actionChannel_6.triggered.connect(lambda checked: (self.select_signal(3)))
@@ -77,12 +79,6 @@ class SignalViewer(QtWidgets.QMainWindow):
         self.graphicsView_1.plotItem.setXRange(max(x, default=0)-9, max(x,default=0))        
         self.data_line1.setData(x, y) 
 
-    def play1(self):
-
-        self.idx1=0
-        self.timer1.setInterval(80)
-        self.timer1.timeout.connect(self.update_plot_data1)
-        self.timer1.start() 
 
     def read_file2(self, file_path) :  
         path=file_path
@@ -166,6 +162,24 @@ class SignalViewer(QtWidgets.QMainWindow):
             self.timer2.stop()
         elif self.actionChannel_6.setChecked():
             self.timer3.stop()
+            
+    def zoomin(self):
+        if self.actionChannel_2.setChecked():        
+        self.graphicsView_1.plotItem.getViewBox().scaleBy((0.5, 0.5))
+        if self.actionChannel_3.setChecked():        
+        self.graphicsView_2.plotItem.getViewBox().scaleBy((0.5, 0.5))
+        if self.actionChannel_6.setChecked():        
+        self.graphicsView_3.plotItem.getViewBox().scaleBy((0.5, 0.5))
+        
+
+    def zoomout(self):
+        if self.actionChannel_2.setChecked():
+        self.graphicsView_1.plotItem.getViewBox().scaleBy((1.5, 1.5))
+        if self.actionChannel_3.setChecked():
+        self.graphicsView_2.plotItem.getViewBox().scaleBy((1.5, 1.5))
+        if self.actionChannel_6.setChecked():
+        self.graphicsView_3.plotItem.getViewBox().scaleBy((1.5, 1.5))
+        
 
 
     def get_extention(self, s):
