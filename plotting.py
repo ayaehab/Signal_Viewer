@@ -186,3 +186,71 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+"""
+# Scrolling Buttons
+
+        # Channel 1
+        self.right_button.clicked.connect(lambda : self.right1())
+        self.left_button.clicked.connect(lambda : self.left1())
+        self.up_button.clicked.connect(lambda : self.up1())
+        self.down_button.clicked.connect(lambda : self.down1())
+        
+        # Channel 2
+        self.right_button.clicked.connect(lambda : self.right2())
+        self.left_button.clicked.connect(lambda : self.left2())
+        self.up_button.clicked.connect(lambda : self.up2())
+        self.down_button.clicked.connect(lambda : self.down2())
+        
+        # Channel 3
+        self.right_button.clicked.connect(lambda : self.right2())
+        self.left_button.clicked.connect(lambda : self.left2())
+        self.up_button.clicked.connect(lambda : self.up2())
+        self.down_button.clicked.connect(lambda : self.down2())
+        
+        
+# Scrolling Functions
+
+    # Channel 1
+    
+    def right1(self):
+        self.graphicsView_1.getViewBox().translateBy(x=+1,y=0)
+
+    def left1(self):
+        self.graphicsView_1.getViewBox().translateBy(x=-1,y=0)
+
+    def up1(self):
+        self.graphicsView_1.getViewBox().translateBy(x=0,y=+0.5)
+    
+    def down1(self):
+        self.graphicsView_1.getViewBox().translateBy(x=0,y=-0.5)
+        
+    # Channel 2
+    
+    def right2(self):
+        self.graphicsView_2.getViewBox().translateBy(x=+1,y=0)
+
+    def left2(self):
+        self.graphicsView_2.getViewBox().translateBy(x=-1,y=0)
+
+    def up2(self):
+        self.graphicsView_2.getViewBox().translateBy(x=0,y=+0.5)
+    
+    def down2(self):
+        self.graphicsView_2.getViewBox().translateBy(x=0,y=-0.5)
+        
+    # Channel 3
+    
+    def right3(self):
+        self.graphicsView_3.getViewBox().translateBy(x=+1,y=0)
+
+    def left3(self):
+        self.graphicsView_3.getViewBox().translateBy(x=-1,y=0)
+
+    def up3(self):
+        self.graphicsView_3.getViewBox().translateBy(x=0,y=+0.5)
+    
+    def down3(self):
+        self.graphicsView_3.getViewBox().translateBy(x=0,y=-0.5)
+"""
