@@ -144,12 +144,12 @@ class SignalViewer(QtWidgets.QMainWindow):
             self.timer1.setInterval(80)
             self.timer1.timeout.connect(self.update_plot_data1)
             self.timer1.start() 
-        elif self.actionChannel_3.setChecked():
+        if self.actionChannel_3.setChecked():
             self.idx2=0
             self.timer2.setInterval(30)
             self.timer2.timeout.connect(self.update_plot_data2)
             self.timer2.start() 
-        elif self.actionChannel_6.setChecked():
+        if self.actionChannel_6.setChecked():
             self.idx3=0
             self.timer3.setInterval(30)
             self.timer3.timeout.connect(self.update_plot_data3)
@@ -158,9 +158,9 @@ class SignalViewer(QtWidgets.QMainWindow):
     def stop(self):
         if self.actionChannel_2.setChecked():
             self.timer1.stop()
-        elif self.actionChannel_3.setChecked():
+        if self.actionChannel_3.setChecked():
             self.timer2.stop()
-        elif self.actionChannel_6.setChecked():
+        if self.actionChannel_6.setChecked():
             self.timer3.stop()
             
     def zoomin(self):
