@@ -30,16 +30,26 @@ class SignalViewer(QtWidgets.QMainWindow):
         self.actionAdd_Signals.triggered.connect(lambda : self.open_file() )
         self.actionCloseAll.triggered.connect(lambda : self.clear_all())
         self.actionExit.triggered.connect(lambda: self.close())
+        
         self.play_button.clicked.connect(lambda : self.play())
         self.stop_button.clicked.connect(lambda : self.stop())
+        
+        self.right_button.clicked.connect(lambda : self.right())
+        self.left_button.clicked.connect(lambda : self.left())
+        self.up_button.clicked.connect(lambda : self.up())
+        self.down_button.clicked.connect(lambda : self.down())
+        
         self.zoom_in.clicked.connect(lambda : self.zoomin())
         self.zoom_out.clicked.connect(lambda : self.zoomout())
-        self.actionChannel_2.triggered.connect(lambda checked: (self.select_signal(1)))
-        self.actionChannel_3.triggered.connect(lambda checked: (self.select_signal(2)))
-        self.actionChannel_6.triggered.connect(lambda checked: (self.select_signal(3)))
+        
+        self.actionChannel_1.triggered.connect(lambda checked: (self.select_signal(1)))
+        self.actionChannel_4.triggered.connect(lambda checked: (self.select_signal(2)))
+        self.actionChannel_5.triggered.connect(lambda checked: (self.select_signal(3)))
         self.graphicsView_1.setXRange(min=0, max=10)
         self.graphicsView_2.setXRange(min=0, max=10)
         self.graphicsView_3.setXRange(min=0, max=10)
+
+        
 
         self.pens = [pg.mkPen('r'), pg.mkPen('b'), pg.mkPen('g')]
 
@@ -145,62 +155,110 @@ class SignalViewer(QtWidgets.QMainWindow):
 
     def select_signal(self, signal):
         if signal == 1:
-            self.actionChannel_2.setChecked(True)
-            self.actionChannel_3.setChecked(False)
-            self.actionChannel_6.setChecked(False)
+            self.actionChannel_1.setChecked(True)
+            self.actionChannel_4.setChecked(False)
+            self.actionChannel_5.setChecked(False)
             
         elif signal == 2:
-            self.actionChannel_2.setChecked(False)
-            self.actionChannel_3.setChecked(True)
-            self.actionChannel_6.setChecked(False)
+            self.actionChannel_1.setChecked(False)
+            self.actionChannel_4.setChecked(True)
+            self.actionChannel_5.setChecked(False)
 
         elif signal == 3:
-            self.actionChannel_2.setChecked(False)
-            self.actionChannel_3.setChecked(False)
-            self.actionChannel_6.setChecked(True)
+            self.actionChannel_1.setChecked(False)
+            self.actionChannel_4.setChecked(False)
+            self.actionChannel_5.setChecked(True)
 
     
     def play(self):
-        if self.actionChannel_2.setChecked():
+        if self.actionChannel_1.isChecked():
             self.idx1=0
             self.timer1.setInterval(80)
             self.timer1.timeout.connect(self.update_plot_data1)
             self.timer1.start() 
-        if self.actionChannel_3.setChecked():
+            
+        if self.actionChannel_4.isChecked():
             self.idx2=0
             self.timer2.setInterval(30)
             self.timer2.timeout.connect(self.update_plot_data2)
             self.timer2.start() 
-        if self.actionChannel_6.setChecked():
+            
+        if self.actionChannel_5.isChecked():
             self.idx3=0
             self.timer3.setInterval(30)
             self.timer3.timeout.connect(self.update_plot_data3)
             self.timer3.start() 
 
     def stop(self):
-        if self.actionChannel_2.setChecked():
+        if self.actionChannel_1.isChecked():
             self.timer1.stop()
-        if self.actionChannel_3.setChecked():
+            
+        if self.actionChannel_4.isChecked():
             self.timer2.stop()
-        if self.actionChannel_6.setChecked():
+
+        if self.actionChannel_5.isChecked():
             self.timer3.stop()
             
     def zoomin(self):
-        if self.actionChannel_2.setChecked():        
-        self.graphicsView_1.plotItem.getViewBox().scaleBy((0.5, 0.5))
-        if self.actionChannel_3.setChecked():        
-        self.graphicsView_2.plotItem.getViewBox().scaleBy((0.5, 0.5))
-        if self.actionChannel_6.setChecked():        
-        self.graphicsView_3.plotItem.getViewBox().scaleBy((0.5, 0.5))
+        if self.actionChannel_1.isChecked():        
+            self.graphicsView_1.plotItem.getViewBox().scaleBy((0.5, 0.5))
+
+        if self.actionChannel_4.isChecked():        
+            self.graphicsView_2.plotItem.getViewBox().scaleBy((0.5, 0.5))
+
+        if self.actionChannel_5.isChecked():        
+            self.graphicsView_3.plotItem.getViewBox().scaleBy((0.5, 0.5))
         
 
     def zoomout(self):
-        if self.actionChannel_2.setChecked():
-        self.graphicsView_1.plotItem.getViewBox().scaleBy((1.5, 1.5))
-        if self.actionChannel_3.setChecked():
-        self.graphicsView_2.plotItem.getViewBox().scaleBy((1.5, 1.5))
-        if self.actionChannel_6.setChecked():
-        self.graphicsView_3.plotItem.getViewBox().scaleBy((1.5, 1.5))
+        if self.actionChannel_1.isChecked():
+            self.graphicsView_1.plotItem.getViewBox().scaleBy((1.5, 1.5))
+        
+        if self.actionChannel_4.isChecked():
+            self.graphicsView_2.plotItem.getViewBox().scaleBy((1.5, 1.5))
+        
+        if self.actionChannel_5.isChecked():
+            self.graphicsView_3.plotItem.getViewBox().scaleBy((1.5, 1.5))
+            
+    def right(self):
+        if self.actionChannel_1.isChecked():
+            self.graphicsView_1.getViewBox().translateBy(x=+1,y=0)
+        
+        if self.actionChannel_4.isChecked():
+            self.graphicsView_2.getViewBox().translateBy(x=+1,y=0)
+        
+        if self.actionChannel_5.isChecked():
+            self.graphicsView_3.getViewBox().translateBy(x=+1,y=0)
+            
+    def left(self):
+        if self.actionChannel_1.isChecked():
+            self.graphicsView_1.getViewBox().translateBy(x=-1,y=0)
+        
+        if self.actionChannel_4.isChecked():
+            self.graphicsView_2.getViewBox().translateBy(x=-1,y=0)
+        
+        if self.actionChannel_5.isChecked():
+            self.graphicsView_3.getViewBox().translateBy(x=-1,y=0)
+            
+    def up(self):
+        if self.actionChannel_1.isChecked():
+            self.graphicsView_1.getViewBox().translateBy(x=0,y=+0.5)
+        
+        if self.actionChannel_4.isChecked():
+            self.graphicsView_2.getViewBox().translateBy(x=0,y=+0.5)
+        
+        if self.actionChannel_5.isChecked():
+            self.graphicsView_3.getViewBox().translateBy(x=0,y=+0.5)
+            
+    def down(self):
+        if self.actionChannel_1.isChecked():
+            self.graphicsView_1.getViewBox().translateBy(x=0,y=-0.5)
+        
+        if self.actionChannel_4.isChecked():
+            self.graphicsView_2.getViewBox().translateBy(x=0,y=-0.5)
+        
+        if self.actionChannel_5.isChecked():
+            self.graphicsView_3.getViewBox().translateBy(x=0,y=-0.5)
         
 
 
@@ -224,69 +282,4 @@ if __name__ == "__main__":
     main()
 
 
-"""
-# Scrolling Buttons
 
-        # Channel 1
-        self.right_button.clicked.connect(lambda : self.right1())
-        self.left_button.clicked.connect(lambda : self.left1())
-        self.up_button.clicked.connect(lambda : self.up1())
-        self.down_button.clicked.connect(lambda : self.down1())
-        
-        # Channel 2
-        self.right_button.clicked.connect(lambda : self.right2())
-        self.left_button.clicked.connect(lambda : self.left2())
-        self.up_button.clicked.connect(lambda : self.up2())
-        self.down_button.clicked.connect(lambda : self.down2())
-        
-        # Channel 3
-        self.right_button.clicked.connect(lambda : self.right2())
-        self.left_button.clicked.connect(lambda : self.left2())
-        self.up_button.clicked.connect(lambda : self.up2())
-        self.down_button.clicked.connect(lambda : self.down2())
-        
-        
-# Scrolling Functions
-
-    # Channel 1
-    
-    def right1(self):
-        self.graphicsView_1.getViewBox().translateBy(x=+1,y=0)
-
-    def left1(self):
-        self.graphicsView_1.getViewBox().translateBy(x=-1,y=0)
-
-    def up1(self):
-        self.graphicsView_1.getViewBox().translateBy(x=0,y=+0.5)
-    
-    def down1(self):
-        self.graphicsView_1.getViewBox().translateBy(x=0,y=-0.5)
-        
-    # Channel 2
-    
-    def right2(self):
-        self.graphicsView_2.getViewBox().translateBy(x=+1,y=0)
-
-    def left2(self):
-        self.graphicsView_2.getViewBox().translateBy(x=-1,y=0)
-
-    def up2(self):
-        self.graphicsView_2.getViewBox().translateBy(x=0,y=+0.5)
-    
-    def down2(self):
-        self.graphicsView_2.getViewBox().translateBy(x=0,y=-0.5)
-        
-    # Channel 3
-    
-    def right3(self):
-        self.graphicsView_3.getViewBox().translateBy(x=+1,y=0)
-
-    def left3(self):
-        self.graphicsView_3.getViewBox().translateBy(x=-1,y=0)
-
-    def up3(self):
-        self.graphicsView_3.getViewBox().translateBy(x=0,y=+0.5)
-    
-    def down3(self):
-        self.graphicsView_3.getViewBox().translateBy(x=0,y=-0.5)
-"""
