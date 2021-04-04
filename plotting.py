@@ -59,12 +59,12 @@ class SignalViewer(QtWidgets.QMainWindow):
 
         self.pens = [pg.mkPen('r'), pg.mkPen('b'), pg.mkPen('g')]
 
-        # Content for PDF
+        # Content for PDF 
         self.fileName = "Signal Report.pdf"
         self.documentTitle = 'Signals report'
         self.title = 'Signal Comparison'
 
-        # Signals imgs
+        # Signals imgs used in generating PDF
         self.ch1_sig_img = 'ch1_sig_img.png'
         self.ch2_sig_img = 'ch2_sig_img.png'
         self.ch3_sig_img = 'ch3_sig_img.png'
@@ -72,23 +72,23 @@ class SignalViewer(QtWidgets.QMainWindow):
         self.ch2_spec_img = 'ch2_spec_img.png'
         self.ch3_spec_img = 'ch3_spec_img.png'
 
-        #  Create document
+        #  Create document with content given
 
         self.pdf = canvas.Canvas(self.fileName)
         self.pdf.setTitle(self.documentTitle)
 
-        #  Title :: Set fonts
+        #  Adjusting title
 
         self.pdf.setFont('Courier-Bold', 36)
         self.pdf.drawCentredString(300, 770, 'Signals Comparison')
 
-        #  Sub-Title
+        #  Adjusting sub-title
 
         self.pdf.setFont('Courier-Bold', 14)
         self.pdf.drawString(200, 665, 'Signal')
         self.pdf.drawString(430, 665, 'Spectrogram')
 
-        #  Draw all lines
+        #  Draw all lines for the table
         self.pdf.line(10, 650, 570, 650)
         self.pdf.line(10, 450, 570, 450)
         self.pdf.line(10, 250, 570, 250)
@@ -97,12 +97,13 @@ class SignalViewer(QtWidgets.QMainWindow):
         self.pdf.line(350, 50, 350, 700)
 
     # ###################################
-    # plotting the signals
+    #Plotting the signals names 
     def sigName(self, signal1, signal2, signal3):
         self.pdf.drawString(50, 550, signal1)
         self.pdf.drawString(50, 350, signal2)
         self.pdf.drawString(50, 150, signal3)
 
+    #Sending all signals images to their positions in the table
     def sigImage(self, img1, img2, img3):
         self.pdf.drawInlineImage(img1, 120, 465, width=190,
                                  height=170, preserveAspectRatio=False, showBoundary=True)
@@ -110,7 +111,7 @@ class SignalViewer(QtWidgets.QMainWindow):
                                  height=170, preserveAspectRatio=False, showBoundary=True)
         self.pdf.drawInlineImage(img3, 120, 65, width=190,
                                  height=170, preserveAspectRatio=False, showBoundary=True)
-
+    #Sending all signals spectroimages to their positions in the table
     def spectroImage(self, img1, img2, img3):
         self.pdf.drawInlineImage(img1, 370, 465, width=190,
                                  height=170, preserveAspectRatio=False)
@@ -119,6 +120,7 @@ class SignalViewer(QtWidgets.QMainWindow):
         self.pdf.drawInlineImage(img3, 370, 65, width=190,
                                  height=170, preserveAspectRatio=False)
 
+    #Generating the PDF
     def export_pdf(self):
         self.sigName('ECG', 'EOG', 'EMG')
         self.sigImage(self.ch1_sig_img, self.ch2_sig_img, self.ch3_sig_img)
@@ -126,6 +128,7 @@ class SignalViewer(QtWidgets.QMainWindow):
                           self.ch2_spec_img, self.ch3_spec_img)
 
         self.pdf.save()
+
 
     def get_extention(self, s):
         for i in range(1, len(s)):
@@ -160,12 +163,13 @@ class SignalViewer(QtWidgets.QMainWindow):
             #contain the amplitudes
             self.y1 = data1.values[:, 1]
             #containe the time values
-            self.x1 = data1.values[:, 0]
         
+            self.x1 = data1.values[:, 0]
         #plotting the signal 'static'
         self.data_line1 = self.graphicsView_1.plot(
             self.x1, self.y1, pen=self.pens[0])
-
+        
+        #"Exporter" function is used to export the entire contents showed on "graphicsView" as an Image  
         exporter = pg.exporters.ImageExporter(self.graphicsView_1.scene())
         exporter.export('ch1_sig_img.png')
 
@@ -199,6 +203,7 @@ class SignalViewer(QtWidgets.QMainWindow):
         self.data_line2 = self.graphicsView_2.plot(
             self.x2, self.y2, pen=self.pens[1])
 
+        #"Exporter" function is used to export the entire contents showed on "graphicsView" as an Image  
         exporter = pg.exporters.ImageExporter(self.graphicsView_2.scene())
         exporter.export('ch2_sig_img.png')
 
@@ -229,7 +234,8 @@ class SignalViewer(QtWidgets.QMainWindow):
             self.x3 = data3.values[:, 0]
         self.data_line3 = self.graphicsView_3.plot(
             self.x3, self.y3, pen=self.pens[2])
-
+        
+        #"Exporter" function is used to export the entire contents showed on "graphicsView" as an Image  
         exporter = pg.exporters.ImageExporter(self.graphicsView_3.scene())
         exporter.export('ch3_sig_img.png')
 
