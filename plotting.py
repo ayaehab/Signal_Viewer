@@ -125,8 +125,9 @@ class SignalViewer(QtWidgets.QMainWindow):
         for i in range(1, len(s)):
             if s[-i] == '.':
                 return s[-(i - 1):]
-
-    def clear_all(self):
+    
+    # Clear all signals function
+    def clear_all(self): 
         self.graphicsView_1.clear()
         self.graphicsView_2.clear()
         self.graphicsView_3.clear()
@@ -135,8 +136,9 @@ class SignalViewer(QtWidgets.QMainWindow):
         self.fname1 = QtGui.QFileDialog.getOpenFileNames(
             self, 'Open only txt or CSV or xls', os.getenv('HOME'))
         # print(self.fname1)
-
-        self.read_file1(self.fname1[0][0])
+        
+        #pass the elements of list in the tuple to the read_file function
+        self.read_file1(self.fname1[0][0])  
         self.read_file2(self.fname1[0][1])
         self.read_file3(self.fname1[0][2])
 
@@ -146,20 +148,23 @@ class SignalViewer(QtWidgets.QMainWindow):
         if self.file_ex == 'txt':
             data1 = pd.read_csv(path)
             self.y1 = data1.values[:, 0]
-            self.x1 = np.linspace(0, 0.001 * len(self.y1), len(self.y1))
+            self.x1 = np.linspace(0, 0.001 * len(self.y1), len(self.y1)) #generates time values corresponding to amplitudes in y
         if self.file_ex == 'csv':
             data1 = pd.read_csv(path)
+            #contain the amplitudes
             self.y1 = data1.values[:, 1]
+            #containe the time values
             self.x1 = data1.values[:, 0]
-
+        
+        #plotting the signal 'static'
         self.data_line1 = self.graphicsView_1.plot(
             self.x1, self.y1, pen=self.pens[0])
 
         exporter = pg.exporters.ImageExporter(self.graphicsView_1.scene())
         exporter.export('ch1_sig_img.png')
 
-        plt.specgram(self.y1, NFFT=None, Fs=10e3, Fc=None)
-        plt.xlabel('Time')
+        plt.specgram(self.y1, Fs=10e3)  #specgram function takes the amplitude column and sampling frequency
+        plt.xlabel('Time')  
         plt.ylabel('Frequency')
 
         plt.savefig('ch1_spec_img.png', dpi=300, bbox_inches='tight')
@@ -168,8 +173,10 @@ class SignalViewer(QtWidgets.QMainWindow):
         x = self.x1[:self.idx1]
         y = self.y1[:self.idx1]
         self.idx1 += 50
+        # shrink range of x-axis
         self.graphicsView_1.plotItem.setXRange(
             max(x, default=0)-9, max(x, default=0))
+        # Plot the new data
         self.data_line1.setData(x, y)
 
     def read_file2(self, file_path):
@@ -189,7 +196,7 @@ class SignalViewer(QtWidgets.QMainWindow):
         exporter = pg.exporters.ImageExporter(self.graphicsView_2.scene())
         exporter.export('ch2_sig_img.png')
 
-        plt.specgram(self.y2, NFFT=None, Fs=10e3, Fc=None)
+        plt.specgram(self.y2,Fs=10e3)
         plt.xlabel('Time')
         plt.ylabel('Frequency')
 
@@ -234,6 +241,7 @@ class SignalViewer(QtWidgets.QMainWindow):
             max(x, default=0)-4, max(x, default=0))
         self.data_line3.setData(x, y)
 
+    # Which channel is controlled
     def select_signal(self, signal):
         if signal == 1:
             self.actionChannel_1.setChecked(True)
@@ -250,6 +258,7 @@ class SignalViewer(QtWidgets.QMainWindow):
             self.actionChannel_4.setChecked(False)
             self.actionChannel_5.setChecked(True)
 
+    # Play function connected to play button based on which channel is controlled
     def play(self):
         if self.actionChannel_1.isChecked():
             self.idx1 = 0
@@ -269,6 +278,7 @@ class SignalViewer(QtWidgets.QMainWindow):
             self.timer3.timeout.connect(self.update_plot_data3)
             self.timer3.start()
 
+    # Stop function connected to Stop button based on which channel is controlled
     def stop(self):
         if self.actionChannel_1.isChecked():
             self.timer1.stop()
@@ -279,6 +289,7 @@ class SignalViewer(QtWidgets.QMainWindow):
         if self.actionChannel_5.isChecked():
             self.timer3.stop()
 
+    # Zoomin function connected to Zoomin button based on which channel is controlled
     def zoomin(self):
         if self.actionChannel_1.isChecked():
             self.graphicsView_1.plotItem.getViewBox().scaleBy((0.5, 0.5))
@@ -289,6 +300,7 @@ class SignalViewer(QtWidgets.QMainWindow):
         if self.actionChannel_5.isChecked():
             self.graphicsView_3.plotItem.getViewBox().scaleBy((0.5, 0.5))
 
+    # Zoomout function connected to zoomout button based on which channel is controlled
     def zoomout(self):
         if self.actionChannel_1.isChecked():
             self.graphicsView_1.plotItem.getViewBox().scaleBy((1.5, 1.5))
@@ -298,60 +310,44 @@ class SignalViewer(QtWidgets.QMainWindow):
 
         if self.actionChannel_5.isChecked():
             self.graphicsView_3.plotItem.getViewBox().scaleBy((1.5, 1.5))
-            
-    # Scrolling Right
+
     def right(self):
-        # Channel 1
         if self.actionChannel_1.isChecked():
             self.graphicsView_1.getViewBox().translateBy(x=+1, y=0)
-        
-        # Channel 2
+
         if self.actionChannel_4.isChecked():
             self.graphicsView_2.getViewBox().translateBy(x=+1, y=0)
 
-        #channel 3
         if self.actionChannel_5.isChecked():
             self.graphicsView_3.getViewBox().translateBy(x=+1, y=0)
-            
-    # Scrolling Left        
+
     def left(self):
-        # Channel 1
         if self.actionChannel_1.isChecked():
             self.graphicsView_1.getViewBox().translateBy(x=-1, y=0)
-            
-        # Channel 2
+
         if self.actionChannel_4.isChecked():
             self.graphicsView_2.getViewBox().translateBy(x=-1, y=0)
-        
-        # Channel 3
+
         if self.actionChannel_5.isChecked():
             self.graphicsView_3.getViewBox().translateBy(x=-1, y=0)
-            
-    # Scrolling UP
+
     def up(self):
-        # Channel 1
         if self.actionChannel_1.isChecked():
             self.graphicsView_1.getViewBox().translateBy(x=0, y=+0.5)
 
-        # Channel 2
         if self.actionChannel_4.isChecked():
             self.graphicsView_2.getViewBox().translateBy(x=0, y=+0.5)
-            
-        # Channel 3
+
         if self.actionChannel_5.isChecked():
             self.graphicsView_3.getViewBox().translateBy(x=0, y=+0.5)
-            
-    # Scrolling Down
+
     def down(self):
-        # Channel 1
         if self.actionChannel_1.isChecked():
             self.graphicsView_1.getViewBox().translateBy(x=0, y=-0.5)
 
-        # Channel 2
         if self.actionChannel_4.isChecked():
             self.graphicsView_2.getViewBox().translateBy(x=0, y=-0.5)
 
-        # Channel 3
         if self.actionChannel_5.isChecked():
             self.graphicsView_3.getViewBox().translateBy(x=0, y=-0.5)
 
