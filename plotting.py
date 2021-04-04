@@ -25,11 +25,14 @@ class SignalViewer(QtWidgets.QMainWindow):
         self.timer3 = QtCore.QTimer()
 
         # Connecting Buttons
-        self.actionAdd_Signals.triggered.connect(lambda: self.open_file())
-        self.actionCloseAll.triggered.connect(lambda: self.clear_all())
+
+        #File Menu
+        self.actionAdd_Signals.triggered.connect(lambda: self.open_file()) 
+        self.actionCloseAll.triggered.connect(lambda: self.clear_all())  
         self.actionExit.triggered.connect(lambda: self.close())
         self.actionPrint_to_PDF.triggered.connect(lambda: self.export_pdf())
 
+        #Toolbar
         self.play_button.clicked.connect(lambda: self.play())
         self.stop_button.clicked.connect(lambda: self.stop())
 
@@ -41,12 +44,15 @@ class SignalViewer(QtWidgets.QMainWindow):
         self.zoom_in.clicked.connect(lambda: self.zoomin())
         self.zoom_out.clicked.connect(lambda: self.zoomout())
 
+        #Signals Menu
         self.actionChannel_1.triggered.connect(
             lambda checked: (self.select_signal(1)))
         self.actionChannel_4.triggered.connect(
             lambda checked: (self.select_signal(2)))
         self.actionChannel_5.triggered.connect(
             lambda checked: (self.select_signal(3)))
+        
+        
         self.graphicsView_1.setXRange(min=0, max=10)
         self.graphicsView_2.setXRange(min=0, max=10)
         self.graphicsView_3.setXRange(min=0, max=10)
