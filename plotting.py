@@ -298,44 +298,60 @@ class SignalViewer(QtWidgets.QMainWindow):
 
         if self.actionChannel_5.isChecked():
             self.graphicsView_3.plotItem.getViewBox().scaleBy((1.5, 1.5))
-
+            
+    # Scrolling Right
     def right(self):
+        # Channel 1
         if self.actionChannel_1.isChecked():
             self.graphicsView_1.getViewBox().translateBy(x=+1, y=0)
-
+        
+        # Channel 2
         if self.actionChannel_4.isChecked():
             self.graphicsView_2.getViewBox().translateBy(x=+1, y=0)
 
+        #channel 3
         if self.actionChannel_5.isChecked():
             self.graphicsView_3.getViewBox().translateBy(x=+1, y=0)
-
+            
+    # Scrolling Left        
     def left(self):
+        # Channel 1
         if self.actionChannel_1.isChecked():
             self.graphicsView_1.getViewBox().translateBy(x=-1, y=0)
-
+            
+        # Channel 2
         if self.actionChannel_4.isChecked():
             self.graphicsView_2.getViewBox().translateBy(x=-1, y=0)
-
+        
+        # Channel 3
         if self.actionChannel_5.isChecked():
             self.graphicsView_3.getViewBox().translateBy(x=-1, y=0)
-
+            
+    # Scrolling UP
     def up(self):
+        # Channel 1
         if self.actionChannel_1.isChecked():
             self.graphicsView_1.getViewBox().translateBy(x=0, y=+0.5)
 
+        # Channel 2
         if self.actionChannel_4.isChecked():
             self.graphicsView_2.getViewBox().translateBy(x=0, y=+0.5)
-
+            
+        # Channel 3
         if self.actionChannel_5.isChecked():
             self.graphicsView_3.getViewBox().translateBy(x=0, y=+0.5)
-
+            
+    # Scrolling Down
     def down(self):
+        # Channel 1
         if self.actionChannel_1.isChecked():
             self.graphicsView_1.getViewBox().translateBy(x=0, y=-0.5)
 
+        # Channel 2
         if self.actionChannel_4.isChecked():
             self.graphicsView_2.getViewBox().translateBy(x=0, y=-0.5)
 
+        # Channel 3
         if self.actionChannel_5.isChecked():
             self.graphicsView_3.getViewBox().translateBy(x=0, y=-0.5)
 
