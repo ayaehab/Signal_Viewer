@@ -318,44 +318,70 @@ class SignalViewer(QtWidgets.QMainWindow):
             self.graphicsView_3.plotItem.getViewBox().scaleBy((1.5, 1.5))
 
     def right(self):
+        
         if self.actionChannel_1.isChecked():
-            self.graphicsView_1.getViewBox().translateBy(x=+1, y=0)
+            self.range = self.graphicsView_1.getViewBox().viewRange()
+            if self.range[0][1] < max(self.x1) :
+                self.graphicsView_1.getViewBox().translateBy(x=+1, y=0)
 
         if self.actionChannel_4.isChecked():
-            self.graphicsView_2.getViewBox().translateBy(x=+1, y=0)
+            self.range = self.graphicsView_2.getViewBox().viewRange()
+            if self.range[0][1] < max(self.x2) :
+                self.graphicsView_2.getViewBox().translateBy(x=+1, y=0)
 
         if self.actionChannel_5.isChecked():
-            self.graphicsView_3.getViewBox().translateBy(x=+1, y=0)
+            self.range = self.graphicsView_3.getViewBox().viewRange()
+            if self.range[0][1] < max(self.x3) :
+                self.graphicsView_3.getViewBox().translateBy(x=+1, y=0)
 
     def left(self):
+        
         if self.actionChannel_1.isChecked():
-            self.graphicsView_1.getViewBox().translateBy(x=-1, y=0)
+            self.range = self.graphicsView_1.getViewBox().viewRange()
+            if self.range[0][0] > min(self.x1) :
+                self.graphicsView_1.getViewBox().translateBy(x=-1, y=0)
 
         if self.actionChannel_4.isChecked():
-            self.graphicsView_2.getViewBox().translateBy(x=-1, y=0)
+            self.range = self.graphicsView_2.getViewBox().viewRange()
+            if self.range[0][0] > min(self.x2) :
+                self.graphicsView_2.getViewBox().translateBy(x=-1, y=0)
 
         if self.actionChannel_5.isChecked():
-            self.graphicsView_3.getViewBox().translateBy(x=-1, y=0)
+            self.range = self.graphicsView_3.getViewBox().viewRange()
+            if self.range[0][0] > min(self.x3) :
+                self.graphicsView_3.getViewBox().translateBy(x=-1, y=0)
 
     def up(self):
         if self.actionChannel_1.isChecked():
-            self.graphicsView_1.getViewBox().translateBy(x=0, y=+0.5)
+            self.range = self.graphicsView_1.getViewBox().viewRange()
+            if self.range[1][1] < max(self.y1) :
+                self.graphicsView_1.getViewBox().translateBy(x=0, y=+0.2)
 
         if self.actionChannel_4.isChecked():
-            self.graphicsView_2.getViewBox().translateBy(x=0, y=+0.5)
+            self.range = self.graphicsView_2.getViewBox().viewRange()
+            if self.range[1][1] < max(self.y2) :
+                self.graphicsView_2.getViewBox().translateBy(x=0, y=+0.2)
 
         if self.actionChannel_5.isChecked():
-            self.graphicsView_3.getViewBox().translateBy(x=0, y=+0.5)
+            self.range = self.graphicsView_3.getViewBox().viewRange()
+            if self.range[1][1] < max(self.y3) :
+                self.graphicsView_3.getViewBox().translateBy(x=0, y=+0.2)
 
     def down(self):
         if self.actionChannel_1.isChecked():
-            self.graphicsView_1.getViewBox().translateBy(x=0, y=-0.5)
+            self.range = self.graphicsView_1.getViewBox().viewRange()
+            if self.range[1][0] > min(self.y1) :
+                self.graphicsView_1.getViewBox().translateBy(x=0, y=-0.2)
 
         if self.actionChannel_4.isChecked():
-            self.graphicsView_2.getViewBox().translateBy(x=0, y=-0.5)
+            self.range = self.graphicsView_2.getViewBox().viewRange()
+            if self.range[1][0] > min(self.y2) :
+                self.graphicsView_2.getViewBox().translateBy(x=0, y=-0.2)
 
         if self.actionChannel_5.isChecked():
-            self.graphicsView_3.getViewBox().translateBy(x=0, y=-0.5)
+            self.range = self.graphicsView_3.getViewBox().viewRange()
+            if self.range[1][0] > min(self.y3) :
+                self.graphicsView_3.getViewBox().translateBy(x=0, y=-0.2)
 
 
 def main():
